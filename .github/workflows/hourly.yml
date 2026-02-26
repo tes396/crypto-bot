@@ -8,24 +8,21 @@ on:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run bot　DB test
+      - name: Run DB test
         run: python db_test.py
-env:
+        env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
 
 
 
