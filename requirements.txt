@@ -1,7 +1,7 @@
 python-telegram-bot
 requests
 pandas
-
+psycopg2-binary
 
 
 
