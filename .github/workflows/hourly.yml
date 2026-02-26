@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
        - name: Run DB test
-        run: python db_test.py
+         run: python db_test.py
 
 
 
