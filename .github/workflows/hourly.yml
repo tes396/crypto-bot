@@ -6,24 +6,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-bot:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run DB test
+      - name: DB Test
         run: python db_test.py
-
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
 
 
