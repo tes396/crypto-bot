@@ -1,28 +1,16 @@
-name: Hourly Bot
+from supabase import create_client
+import os
 
-on:
-  schedule:
-    - cron: "0 * * * *"
-  workflow_dispatch:
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_ANON_KEY")
 
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
+# テスト用：テーブル一覧取得
+tables = supabase.table("tokens").select("*").limit(1).execute()
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run DB test
-        run: python db_test.py
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+print("SUCCESS: Connected to Supabase")
+print(tables)
 
 
 
