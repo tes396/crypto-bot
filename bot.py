@@ -1,8 +1,7 @@
 import requests
 import sys
 
-url = "https://api.dexscreener.com/latest/dex/pairs/solana"
-
+url = "https://api.dexscreener.com/latest/dex/search?q=SOL"
 response = requests.get(url, timeout=15)
 
 print("STATUS:", response.status_code)
